@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5029696067208994325}
   - component: {fileID: 6443818989510562120}
   - component: {fileID: 1253383132104375991}
+  - component: {fileID: -7355979393107269888}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: CanPickup
@@ -110,7 +111,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5263714269913363013}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.105531186
   m_Height: 0.723719
   m_Direction: 1
@@ -124,7 +125,21 @@ BoxCollider:
   m_GameObject: {fileID: 5263714269913363013}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.1299125, y: 0.723719, z: 0.12036574}
   m_Center: {x: -0.0007956028, y: 0.018776655, z: 0.0007955432}
+--- !u!64 &-7355979393107269888
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263714269913363013}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6121590469811200223, guid: b2035ffcdcd760e4f9bff329921104ab, type: 3}
