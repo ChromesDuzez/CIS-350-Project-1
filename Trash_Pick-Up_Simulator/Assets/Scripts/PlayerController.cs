@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float mouseSensitivity = 3.5f;
     [Tooltip("The speed at which the player moves")]
     [SerializeField] float walkSpeed = 6f;
+    public float jumpHeight = 1.0f;
     [Tooltip("The speed at which the player moves towards the ground")]
     [SerializeField] float gravity = -13f;
     [Tooltip("The amount of smoothing when the player starts and stops moving")]
@@ -148,6 +149,12 @@ public class PlayerController : MonoBehaviour
 
         // Calculate velocity based on set movement speed and apply it to the player
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;
+
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+        {
+            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
+
         controller.Move(velocity * Time.deltaTime);
     }
 
