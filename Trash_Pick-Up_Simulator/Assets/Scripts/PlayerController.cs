@@ -8,6 +8,8 @@
 *****************************************************************************/
 
 using UnityEngine;
+using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     #region///////////// Public Variables: ///////////////
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
     // Throw Ability
     [Header("Throw Ability:")]
     [Tooltip("Force at which an object is thrown")]
-    [SerializeField][Range(500f, 1500f)] public float throwForce = 1000f;
+    [SerializeField][Range(500f, 1500f)] public float maxThrowForce = 1000f;
     #endregion
 
     #region///////////// Private Variables: ///////////////
@@ -66,6 +68,13 @@ public class PlayerController : MonoBehaviour
     // Raycast
     int playerMask = ~(1 << 8); // Hides the player object from the raycast
     #endregion
+
+    // PowerBar
+    public Slider powerbarSlider;
+    public Image sliderFillImage;
+    
+    [Range(0.01f, 1f)]
+    public float fillRate = 0.25f;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -185,7 +194,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // If input, release held object and add a set force to it
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            powerbarSlider.value = 0;
+            sliderFillImage.color = Color.red;
+        }
+
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            powerbarSlider.value += fillRate * Time.deltaTime;
+        }
+
+        if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             // (Release)
             GameObject thrownItem = holdPoint.GetChild(0).gameObject;
@@ -195,7 +215,9 @@ public class PlayerController : MonoBehaviour
             // (Throw)
             Rigidbody rb = thrownItem.GetComponent<Rigidbody>();
             rb.isKinematic = false;
-            rb.AddForce(playerCamera.forward * throwForce, ForceMode.Force);
+            rb.AddForce(playerCamera.forward * maxThrowForce * powerbarSlider.value, ForceMode.Force);
+            powerbarSlider.value = 1;
+            sliderFillImage.color = Color.white;
         }
     }
 }
