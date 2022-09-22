@@ -59,11 +59,12 @@ public class PlayerController : MonoBehaviour
 
     // Movement
     float cameraPitch = 0f;
-    float velocityY = 0f;
+    Vector3 moveVelocity;
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
+    bool grounded;
 
 
     // Raycast
@@ -135,27 +136,37 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void UpdateMovement()
     {
+        if(controller.isGrounded)
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
+
+        // Handle if the player is falling
+        if (grounded && moveVelocity.y < 0f)
+        {
+            moveVelocity.y = -2f;
+        }
+
         // Get Movement input and smooth it
         Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDir.Normalize();
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
 
-        // Handle if the player is falling
-        if(controller.isGrounded)
-        {
-            velocityY = 0f;
-        }
-        velocityY += gravity * Time.deltaTime;
-
         // Calculate velocity based on set movement speed and apply it to the player
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;
+        Vector3 move = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed;
+        controller.Move(move * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            moveVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
+        moveVelocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(moveVelocity * Time.deltaTime);
     }
 
     /// <summary>
