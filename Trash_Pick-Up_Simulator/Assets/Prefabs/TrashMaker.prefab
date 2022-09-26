@@ -50,3 +50,5 @@ MonoBehaviour:
   - {fileID: 1744463292653438930, guid: 0c2fd768e10b30843b6bbb9f2f6b3144, type: 3}
   startDelay: 0
   waitTime: 7
+  maxSpawnRange: {x: 15, y: 0, z: 15}
+  minSpawnRange: {x: -15, y: 0, z: -15}

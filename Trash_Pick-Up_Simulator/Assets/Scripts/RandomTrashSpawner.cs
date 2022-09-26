@@ -9,6 +9,8 @@ public class RandomTrashSpawner : MonoBehaviour
     public GameObject[] trashPrefabs = new GameObject[2];
     public float startDelay;
     public float waitTime = 7f;
+    public Vector3 maxSpawnRange;
+    public Vector3 minSpawnRange;
 
     private void Start()
     {
@@ -25,7 +27,7 @@ public class RandomTrashSpawner : MonoBehaviour
 
     IEnumerator TrashSpawn()
     {
-        Vector3 offset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        Vector3 offset = new Vector3(Random.Range(minSpawnRange.x, maxSpawnRange.x), Random.Range(minSpawnRange.y, maxSpawnRange.y), Random.Range(minSpawnRange.z, maxSpawnRange.z));
         Instantiate(trashPrefabs[Random.Range(0, trashPrefabs.Length)], gameObject.transform.position + offset, gameObject.transform.rotation);
         ready = false;
         yield return new WaitForSeconds(waitTime);
