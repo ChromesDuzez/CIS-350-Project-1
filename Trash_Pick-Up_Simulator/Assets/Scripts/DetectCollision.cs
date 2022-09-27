@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //attach to the recepticals
 public class DetectCollision : MonoBehaviour
@@ -14,6 +15,8 @@ public class DetectCollision : MonoBehaviour
     private ScoreManager displayScoreScript;
     //public HealthSystem healthSystem;
     //public bool getHealthOnKill;
+
+    public Slider messTracker;
 
     private void Start()
     {
@@ -26,5 +29,6 @@ public class DetectCollision : MonoBehaviour
         //if (getHealthOnKill) { healthSystem.AddHealth(); }
         displayScoreScript.incramentScore();
         Destroy(other.gameObject);
+        messTracker.value--;
     }
 }

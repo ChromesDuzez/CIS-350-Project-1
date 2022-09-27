@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Reference to the transform of the first person camera")]
     [SerializeField] Transform playerCamera = null;
 
+    public Transform holdPoint;
 
     // Movement
     [Header("Movement:")]
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     // Refrences
     CharacterController controller = null;
-    Transform holdPoint;
+    
     Transform firePoint;
 
     // Movement

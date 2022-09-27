@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 1
-  accelerator: 0.15
+  accelerator: 0.75
   trashPrefabs:
   - {fileID: 5263714269913363013, guid: 8f32343bf08a951428fbc8ab2a0430d7, type: 3}
   - {fileID: 1744463292653438930, guid: 0c2fd768e10b30843b6bbb9f2f6b3144, type: 3}
   startDelay: 0
-  waitTime: 7
+  waitTime: 15
   maxSpawnRange: {x: 15, y: 0, z: 15}
   minSpawnRange: {x: -15, y: 0, z: -15}
+  maxSpawnRate: 5
