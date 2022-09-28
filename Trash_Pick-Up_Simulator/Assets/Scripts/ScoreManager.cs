@@ -12,8 +12,10 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public Text textbox;
+    public Text hsText;
     public int defaultIncrament; //the default incramentation value called by the methods if no parameter is passed through
     private int score = 0; //score is privated so that it cant be edited directly but only through the methods
+    private int highScore;
     private const int constInt = -999999999; // a default parameter option so that the default incrament can be somewhat dynamic
 
     //bool for testing purposes
@@ -26,6 +28,9 @@ public class ScoreManager : MonoBehaviour
         if (defaultIncrament <= 0) { defaultIncrament = 1; }
         textbox = GetComponent<Text>();
         textbox.text = "Score: 0";
+
+        highScore = PlayerPrefs.GetInt("highScore", 0);
+        hsText.text = "High Score: " + highScore;
     }
 
     // Update is called once per frame
@@ -40,6 +45,13 @@ public class ScoreManager : MonoBehaviour
     {
         if (awardedPoints == constInt) { awardedPoints = defaultIncrament;  }
         score += awardedPoints;
+
+        if(score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highScore", highScore);
+            hsText.text = "High Score: " + highScore;
+        }
     }
 
     public void decramentScore(int removedPoints = constInt)
