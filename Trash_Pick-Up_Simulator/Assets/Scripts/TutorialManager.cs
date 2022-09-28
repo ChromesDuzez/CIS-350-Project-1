@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour
 
     public int count = 0;
     public bool[] arr = new bool[5];
+    public int throwCount=0;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -82,6 +83,18 @@ public class TutorialManager : MonoBehaviour
         if (count == 5)
         {
             thirdPanel.SetActive(true);
+            if (thirdPanel.activeSelf == false)
+            {
+                if(Input.GetKeyDown(KeyCode.Mouse0)&& playerControllerScript.holdPoint.childCount == 0)
+                {
+                    throwCount++;
+                }
+                if (throwCount == 0)
+                {
+                    finalPanel.SetActive(true);
+                    count++;
+                }
+            }
         }
     }
 }
