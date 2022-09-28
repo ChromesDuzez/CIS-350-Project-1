@@ -16,13 +16,19 @@ public class TutorialManager : MonoBehaviour
     #region///////////// Public Variables: ///////////////
 
     public PlayerController playerControllerScript;
-    public GameObject firstPanel;
-    public GameObject secondPanel;
-    public GameObject thirdPanel;
-    public GameObject finalPanel;
+    public ScoreManager scoreManagerScript;
+   
+    #endregion
+    #region///////////// Private Variables: ///////////////
 
-    public int count = 0;
-    public bool[] arr = new bool[5];
+    private GameObject firstPanel;
+    private GameObject secondPanel;
+    private GameObject thirdPanel;
+    private GameObject finalPanel;
+
+    private int count = 0;
+    private bool[] arr = new bool[5];
+    private int throwCount = 0;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -82,6 +88,24 @@ public class TutorialManager : MonoBehaviour
         if (count == 5)
         {
             thirdPanel.SetActive(true);
+            if (throwCount < 3)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount == 0)
+                {
+                    throwCount++;
+                }
+            }
+            else
+            {
+                finalPanel.SetActive(true);
+                count++;
+            }
+            
         }
+        if(finalPanel.activeSelf==false && count == 6)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("MainLevel").buildIndex);
+        }
+        
     }
 }
