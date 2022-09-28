@@ -96,6 +96,16 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = false;
         }
 
+        //if the powerbar slider and filler aren't already set these two lines go out and get those objects by tag.
+        if(powerbarSlider == null)
+        {
+            powerbarSlider = GameObject.FindWithTag("PowerBar").GetComponent<Slider>() as Slider;
+        }
+        if (sliderFillImage == null)
+        {
+            sliderFillImage = GameObject.FindWithTag("PowerBarFiller").GetComponent<Image>() as Image;
+        }
+
         //mouseSensitivity = PlayerPrefs.GetFloat("SensitivityPref");
 
     }

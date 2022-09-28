@@ -6,6 +6,11 @@ TagManager:
   tags:
   - CanPickup
   - Scoreboard
+  - PowerBar
+  - PowerBarFiller
+  - CountDownTimer
+  - GameOverText
+  - MessTracker
   layers:
   - Default
   - TransparentFX
