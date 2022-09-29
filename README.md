@@ -15,7 +15,7 @@ To get the latest version of the game, you can download/play from one of the fol
 
 - [GitHub Releases](https://github.com/PlatFormPlayZ/CIS-350-Project-1/releases)
 - [Simmer.io](https://simmer.io/@Ronis/trash-pick-up-simulator)
-- [Play the Dev Branch]()
+- [Play the Dev Branch](https://github.com/PlatFormPlayZ/CIS-350-Project-1/blob/main/README.md#playing-the-dev-branch)
 
 ## Feedback
 For anyone who would like to give us feedback about our game please fill out the following form...
