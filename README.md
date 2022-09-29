@@ -19,7 +19,7 @@ To get the latest version of the game, you can download/play from one of the fol
 
 ## Feedback
 For anyone who would like to give us feedback about our game please fill out the following form...
-- [Google Form](https://forms.gle/KNsvzmTyPs784A7j9)
+- [Google Form](https://forms.gle/KNsvzmTyPs784A7j9) (aka the Unofficial Playtesting Questionnaire)
 
 ## Playing the Dev Branch
 To play the Dev Branch, all you need to do is follow the instructions below to clone the Repository...
