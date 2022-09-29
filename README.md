@@ -15,6 +15,11 @@ To get the latest version of the game, you can download/play from one of the fol
 
 - [GitHub Releases](https://github.com/PlatFormPlayZ/CIS-350-Project-1/releases)
 - [Simmer.io](https://simmer.io/@Ronis/trash-pick-up-simulator)
+- [Play the Dev Branch]()
+
+## Feedback
+For anyone who would like to give us feedback about our game please fill out the following form...
+- [Google Form](https://forms.gle/KNsvzmTyPs784A7j9)
 
 ## Playing the Dev Branch
 To play the Dev Branch, all you need to do is follow the instructions below to clone the Repository...
@@ -44,7 +49,3 @@ Now that we have the repo cloned, unity installed, all that is left is to open t
 - Once the project has opened, you can play in the development environment. Do so by going to scenes > MainMenu then Play at the top.
 
 If you have an error wher Unity is failing to load the project due to the layout see [this article](https://answers.unity.com/questions/1712501/stuck-in-failed-to-load-window-layout-loop.html).
-
-## Feedback
-For anyone who would like to give us feedback about our game please fill out the following form...
-- [Google Form](https://forms.gle/KNsvzmTyPs784A7j9)
