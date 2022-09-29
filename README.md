@@ -49,3 +49,6 @@ Now that we have the repo cloned, unity installed, all that is left is to open t
 - Once the project has opened, you can play in the development environment. Do so by going to scenes > MainMenu then Play at the top.
 
 If you have an error wher Unity is failing to load the project due to the layout see [this article](https://answers.unity.com/questions/1712501/stuck-in-failed-to-load-window-layout-loop.html).
+To summarize try:
+- Go to "%UserProfile%/AppData/Roaming/Unity/Editor-5.x/Preferences/Layouts" and delete "LastLayout.dwlt"
+- Then go to the cloned Repo folder then  "./Trash_Pick-Up_Simulator/Library/" and delete "CurrentLayout-default.dwlt"
