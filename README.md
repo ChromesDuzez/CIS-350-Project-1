@@ -10,7 +10,7 @@ Unzip the game folder from the zip file, and place the contents of the game in a
 You can send a shortcut for the Trash_Pick-Up_Simulator.exe to the desktop should you wish.
 All you need to do is click on the exe to launch and bob's your uncle.
 
-## Playing the Release
+## Playing the Game
 To get the latest version of the game, you can download/play from one of the following source(s)
 
 - [GitHub Releases](https://github.com/PlatFormPlayZ/CIS-350-Project-1/releases)
