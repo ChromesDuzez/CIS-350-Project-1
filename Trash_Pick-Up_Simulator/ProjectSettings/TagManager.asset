@@ -11,6 +11,8 @@ TagManager:
   - CountDownTimer
   - GameOverText
   - MessTracker
+  - PauseMenu
+  - ControlsMenu
   layers:
   - Default
   - TransparentFX

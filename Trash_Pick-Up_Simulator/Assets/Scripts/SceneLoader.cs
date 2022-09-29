@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*
+* Devun Schneider
+* CIS 350 - Trash Pick-Up Simulator
+* This script manages the changing of scenes throughout the menus
+*/
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
