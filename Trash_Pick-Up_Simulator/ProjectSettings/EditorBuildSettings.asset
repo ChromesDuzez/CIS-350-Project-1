@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/About.unity
     guid: 81d7b49077ec2284586bb712f5c1a1a6
   - enabled: 0
-    path: Assets/Scenes/InGameTutorial.unity
-    guid: 655e69572196b8a40b85206886b65cdb
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/HTP_Menu.unity
     guid: 5e2d4792b751fbe4b892c632c3325010
