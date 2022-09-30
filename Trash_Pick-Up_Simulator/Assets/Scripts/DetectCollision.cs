@@ -27,8 +27,12 @@ public class DetectCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if (getHealthOnKill) { healthSystem.AddHealth(); }
-        displayScoreScript.incramentScore();
-        Destroy(other.gameObject);
-        messTracker.value--;
+        if (other.CompareTag("CanPickup"))
+        {
+            displayScoreScript.incramentScore();
+            Destroy(other.gameObject);
+            messTracker.value--;
+        }
+
     }
 }

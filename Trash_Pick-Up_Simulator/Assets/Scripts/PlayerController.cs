@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float mouseSensitivity = 3.5f;
     [Tooltip("The speed at which the player moves")]
     [SerializeField] float walkSpeed = 6f;
+    [SerializeField] float runSpeed = 12f;
+    [SerializeField] float speedModifier = 6f;
     public float jumpHeight = 1.0f;
     [Tooltip("The speed at which the player moves towards the ground")]
     [SerializeField] float gravity = -13f;
@@ -168,7 +170,19 @@ public class PlayerController : MonoBehaviour
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
 
         // Calculate velocity based on set movement speed and apply it to the player
-        Vector3 move = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed;
+        Vector3 move = (transform.forward * currentDir.y + transform.right * currentDir.x) * speedModifier;
+
+        //modifies speed if left shift is held
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speedModifier = runSpeed;
+        }
+        else
+        {
+            speedModifier = walkSpeed;
+        }
+
+
         controller.Move(move * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded)

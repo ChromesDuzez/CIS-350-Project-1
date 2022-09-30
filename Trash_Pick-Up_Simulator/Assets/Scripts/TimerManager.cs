@@ -22,8 +22,8 @@ public class TimerManager : MonoBehaviour
     {
         if(startingMinutes == 0 && startingSeconds == 0)
         {
-            startingMinutes = 8;
-            startingSeconds = 30;
+            startingMinutes = 2;
+            startingSeconds = 15;
         }
         timeValue = (startingMinutes * 60) + startingSeconds;
 

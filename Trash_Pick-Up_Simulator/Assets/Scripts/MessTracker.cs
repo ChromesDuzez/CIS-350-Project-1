@@ -37,6 +37,7 @@ public class MessTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if too much trash spawns, game ends
         if (messTracker.value >= maxTrash && !gameOver)
         {
             Time.timeScale = 0;
@@ -45,12 +46,14 @@ public class MessTracker : MonoBehaviour
             hasLost = true;
         }
 
+        //if the tracker never reaches full capacity by the wime the timer ends, you win
         if(gameOver && !hasLost)
         {
             Time.timeScale = 0;
             gameOverText.text = "Your world has been spared from the trash.\n(for now)\nPress R to play again.";
         }
 
+        //enables restart
         if(gameOver)
         {
             if(Input.GetKeyDown(KeyCode.R))
