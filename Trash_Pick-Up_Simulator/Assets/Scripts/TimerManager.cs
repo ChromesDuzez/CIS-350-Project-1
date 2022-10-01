@@ -14,7 +14,7 @@ public class TimerManager : MonoBehaviour
     public float startingMinutes;
     public float startingSeconds;
     public MessTracker messTrackerScript;
-    public float timeValue;
+    private float timeValue;
     public Text timeText;
 
     // Start is called before the first frame update
@@ -22,8 +22,8 @@ public class TimerManager : MonoBehaviour
     {
         if(startingMinutes == 0 && startingSeconds == 0)
         {
-            startingMinutes = 2;
-            startingSeconds = 15;
+            startingMinutes = 2; //these are default values if you wish to change them, they are in the inspector
+            startingSeconds = 15; //these are default values if you wish to change them ,they are in the inspector
         }
         timeValue = (startingMinutes * 60) + startingSeconds;
 
