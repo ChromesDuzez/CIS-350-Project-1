@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
     [Range(0.01f, 1f)]
     public float fillRate = 0.25f;
 
+    //objectHitByRayCast's Ground Collision SFX Mngr Script
+    private GroundCollisionSFXMngr groundCollsionSFXMngrScript;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -220,6 +223,16 @@ public class PlayerController : MonoBehaviour
                     hitInfo.transform.SetParent(holdPoint);
                     hitInfo.transform.localPosition = Vector3.zero;
                     hitInfo.transform.localRotation = Quaternion.identity;
+                    
+                    try
+                    {
+                        groundCollsionSFXMngrScript = hitInfo.collider.gameObject.GetComponent<GroundCollisionSFXMngr>();
+                        groundCollsionSFXMngrScript.isOnGround = false;
+                    }
+                    catch
+                    {
+                        Debug.Log("Couldn't find hitInfo's Ground Collision SFX Manager.");
+                    }
                 }
             }
         }

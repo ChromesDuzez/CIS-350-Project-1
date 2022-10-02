@@ -15,6 +15,7 @@ TagManager:
   - ControlsMenu
   - MuteToggle
   - MutedSprite
+  - TrashCan
   layers:
   - Default
   - TransparentFX

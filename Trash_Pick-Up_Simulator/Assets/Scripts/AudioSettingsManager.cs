@@ -11,8 +11,8 @@ using UnityEngine.UI;
 
 public static class globals
 {
-    public static float volumePerc = 100; //will need to implement a way to change this setting and any other subsequent audio settings but for now we just have mute/unmute
-    public static bool bUnMuted = false;
+    public static float volume = 1.0f; //will need to implement a way to change this setting and any other subsequent audio settings but for now we just have mute/unmute
+    public static bool bUnMuted = true;
 }
 
 public class AudioSettingsManager : MonoBehaviour
@@ -26,18 +26,19 @@ public class AudioSettingsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get the toggle object
         muteToggle = GameObject.FindWithTag("MuteToggle").GetComponent<Toggle>() as Toggle;
+        //start the listener for a value change
         muteToggle.onValueChanged.AddListener(delegate {
             ToggleValueChanged(muteToggle); 
         });
-        mText.text = "Sound On";
+        //get the muted sprite (or isOn == false sprite that has to be managed by this script)
         if (mutedIconSprite == null)
         {
             try
             {
                 mutedIconSprite = GameObject.FindWithTag("MutedSprite").GetComponent<Image>() as Image;
                 mutedIconSpriteSet = true;
-                mutedIconSprite.enabled = false;
             }
             catch
             {
@@ -48,8 +49,13 @@ public class AudioSettingsManager : MonoBehaviour
         else
         {
             mutedIconSpriteSet = true;
-            mutedIconSprite.enabled = false;
         }
+
+        //start the muteToggle isOn variable at what the global variable is set to
+        muteToggle.isOn = globals.bUnMuted;
+
+        //update the properties of the toggle appropriately
+        ToggleValueChanged(muteToggle);
     }
 
     void ToggleValueChanged(Toggle change)
