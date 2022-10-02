@@ -40,10 +40,7 @@ public class MessTracker : MonoBehaviour
         //if too much trash spawns, game ends
         if (messTracker.value >= maxTrash && !gameOver)
         {
-            Time.timeScale = 0;
-            gameOverText.text = "Your world has been consumed...\nPress R to try again.";
-            gameOver = true;
-            hasLost = true;
+            GameOver();
         }
 
         //if the tracker never reaches full capacity by the wime the timer ends, you win
@@ -61,5 +58,13 @@ public class MessTracker : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        gameOverText.text = "Your world has been consumed...\nPress R to try again.";
+        gameOver = true;
+        hasLost = true;
     }
 }
