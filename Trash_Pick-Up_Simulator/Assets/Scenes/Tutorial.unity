@@ -519,10 +519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControllerScript: {fileID: 0}
-  firstPanel: {fileID: 0}
-  secondPanel: {fileID: 0}
-  thirdPanel: {fileID: 0}
-  finalPanel: {fileID: 0}
   popUpIndex: 0
   popups:
   - {fileID: 1724208463574514369}
@@ -530,6 +526,7 @@ MonoBehaviour:
   - {fileID: 98924243}
   - {fileID: 2052359018}
   throwCount: 0
+  spawner: {fileID: 0}
 --- !u!4 &780975655
 Transform:
   m_ObjectHideFlags: 0
@@ -1080,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724208462322377297, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1724208462552395500, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1172,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724208462987716858, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463008623882, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1326,21 +1323,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 1724208463795707068, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
+      propertyPath: m_Text
+      value: After you pick up trash, Press and Hold Left Mouse to Throw Trash into
+        a Trash Can, the longer you hold down the button, the farther you throw!
+        The distance is based on the power bar in the bottom left corner.
+      objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000019073
+      value: 1.4193
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.5
+      value: -8.97
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 175.20721
+      value: 178.04584
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85.9762
+      value: 94.92465
       objectReference: {fileID: 0}
     - target: {fileID: 1724208464007809454, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_Color.a
@@ -1436,6 +1439,14 @@ PrefabInstance:
     - target: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
       propertyPath: m_Name
       value: TrashMaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
+      propertyPath: m_TagString
+      value: Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}

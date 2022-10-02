@@ -15,6 +15,7 @@ TagManager:
   - ControlsMenu
   - MuteToggle
   - MutedSprite
+  - Spawner
   layers:
   - Default
   - TransparentFX

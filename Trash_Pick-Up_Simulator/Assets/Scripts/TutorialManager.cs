@@ -21,13 +21,15 @@ public class TutorialManager : MonoBehaviour
     public int popUpIndex = 0;
     public GameObject[] popups;
     public int throwCount=0;
+
+    public GameObject spawner;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-      
 
-      
+
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
     // Update is called once per frame
@@ -53,14 +55,16 @@ public class TutorialManager : MonoBehaviour
             }
         }
         else if (popUpIndex == 1)
-        {
+        {//checks if player has pressed E and picked up something
+            //activates trash spawner
+            spawner.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
             {
                 popUpIndex++;
             }
         }
         else if (popUpIndex == 2)
-        { //checks if player has pressed E and picked up something
+        { 
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount == 0)
             {
                 throwCount++;
