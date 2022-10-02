@@ -72,7 +72,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if (popUpIndex == 3)
         {
-            
+            Cursor.visible = true;
         }
        
     }
