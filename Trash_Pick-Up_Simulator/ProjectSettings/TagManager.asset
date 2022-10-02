@@ -13,6 +13,8 @@ TagManager:
   - MessTracker
   - PauseMenu
   - ControlsMenu
+  - MuteToggle
+  - MutedSprite
   layers:
   - Default
   - TransparentFX
