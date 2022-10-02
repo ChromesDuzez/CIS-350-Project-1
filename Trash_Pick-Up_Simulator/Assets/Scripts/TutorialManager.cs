@@ -16,85 +16,64 @@ public class TutorialManager : MonoBehaviour
     #region///////////// Public Variables: ///////////////
 
     public PlayerController playerControllerScript;
-    public GameObject firstPanel;
-    public GameObject secondPanel;
-    public GameObject thirdPanel;
-    public GameObject finalPanel;
+   
 
-    public int count = 0;
-    public bool[] arr = new bool[5];
+    public int popUpIndex = 0;
+    public GameObject[] popups;
     public int throwCount=0;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        firstPanel = GameObject.Find("Panel_1"); firstPanel.SetActive(true);
-        secondPanel = GameObject.Find("Panel_2"); secondPanel.SetActive(false);
-        thirdPanel = GameObject.Find("Panel_3"); thirdPanel.SetActive(false);
-        finalPanel = GameObject.Find("Panel_4"); finalPanel.SetActive(false);
+      
 
-        for(int i=0; i <= arr.Length; i++)
-        {
-            arr[i] = false;
-        }
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(firstPanel.activeSelf == false)
+        for(int i = 0; i < popups.Length; i++)
         {
-            if (Input.GetKeyDown(KeyCode.W) && arr[0]==false)
+            if (i == popUpIndex)
             {
-                count++;
-                arr[0] = true;
+                popups[popUpIndex].SetActive(true);
             }
-            if (Input.GetKeyDown(KeyCode.A) && arr[1] == false)
+            else
             {
-                count++;
-                arr[1] = true;
-            }
-            if (Input.GetKeyDown(KeyCode.S) && arr[2] == false)
-            {
-                count++;
-                arr[2] = true;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && arr[3] == false)
-            {
-                count++;
-                arr[3] = true;
+                popups[popUpIndex].SetActive(false);
             }
         }
-        if (count == 4)
+        if (popUpIndex == 0)
         {
-            //sets panel to active
-            secondPanel.SetActive(true);
-            //waits for player to press continue button (which makes the panel not active)
-            if (secondPanel.activeSelf == false)
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
-                //checks if player has pressed E and picked up something
-                if(Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
-                {
-                    count++;
-                }
+               popUpIndex++;
+
             }
         }
-        //sets the final panel active if both others are done
-        if (count == 5)
+        else if (popUpIndex == 1)
         {
-            thirdPanel.SetActive(true);
-            if (thirdPanel.activeSelf == false)
+            if (Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
             {
-                if(Input.GetKeyDown(KeyCode.Mouse0)&& playerControllerScript.holdPoint.childCount == 0)
-                {
-                    throwCount++;
-                }
-                if (throwCount == 0)
-                {
-                    finalPanel.SetActive(true);
-                    count++;
-                }
+                popUpIndex++;
             }
         }
+        else if (popUpIndex == 2)
+        { //checks if player has pressed E and picked up something
+            if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount == 0)
+            {
+                throwCount++;
+            }
+            if (throwCount == 3)
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 3)
+        {
+            
+        }
+       
     }
 }
