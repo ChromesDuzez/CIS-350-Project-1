@@ -26,10 +26,10 @@ public class TutorialManager : MonoBehaviour
 
    
     public float timer=7;
-    public TimerManager inGameTimer;
-  
     private bool continueClicked = false;
     private bool done = false;
+
+   // public MessTracker messSlider;
     #endregion
 
 
@@ -82,14 +82,12 @@ public class TutorialManager : MonoBehaviour
         {
 
             // checks if player has picked up something, if so goes to next panel
-            if(playerControllerScript.holdPoint.childCount != null)
+            if (playerControllerScript.holdPoint.childCount != 0)
             {
-                if (playerControllerScript.holdPoint.childCount != 0)
-                {
-                    popUpIndex++;
-                }
+                popUpIndex++;
             }
-            
+
+
         }
         //throwing panel showing
         else if (popUpIndex == 2)
@@ -129,7 +127,7 @@ public class TutorialManager : MonoBehaviour
             //counts down on the 10 second timer
             if (timer > 0)
             {
-                timer = timer - Time.deltaTime;
+               
             }
             //once the timer is 0, go to next panel
             else 
@@ -142,14 +140,14 @@ public class TutorialManager : MonoBehaviour
         else if (popUpIndex == 5)
         {
             
-            Debug.Log("Player reached last Tutorial Slide...");
+            
             if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 continueClicked = true;
                 //starts the timer
-                inGameTimer.tutorialDone = true;
-                Debug.Log("Setting tutorialDone to true...");
-                
+                timer = timer - Time.deltaTime;
+
+               // messSlider.messTracker.value = 0f;
             }
         }
 
