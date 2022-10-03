@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     private int score = 0; //score is privated so that it cant be edited directly but only through the methods
     private int highScore;
     private const int constInt = -999999999; // a default parameter option so that the default incrament can be somewhat dynamic
+    public bool delHighScore = false;
 
     //bool for testing purposes
     public bool forceIncrament = false;
@@ -39,6 +40,7 @@ public class ScoreManager : MonoBehaviour
         if (score <= 0) { score = 0; } //this prevents the allowing of negative scores. (comment out this line if we want that option)
         textbox.text = "Score: " + score;
         if (forceIncrament || forceDecrament) { testerMethod(); }
+        if (delHighScore) { PlayerPrefs.DeleteKey("highScore"); }
     }
 
     public void incramentScore(int awardedPoints = constInt)
