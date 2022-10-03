@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7555605356339653938, guid: 44775521ca893c7438b5d9b9339fdfc6, type: 3}
+      propertyPath: holdPoint
+      value: 
+      objectReference: {fileID: 1113261663}
     - target: {fileID: 7555605356339653940, guid: 44775521ca893c7438b5d9b9339fdfc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5462866
@@ -1071,6 +1075,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018374069}
   m_CullTransparentMesh: 0
+--- !u!4 &1113261663 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7555605355231916759, guid: 44775521ca893c7438b5d9b9339fdfc6, type: 3}
+  m_PrefabInstance: {fileID: 1003771582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383749698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2397,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5556623550424699276, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
+      propertyPath: accelerator
+      value: 57.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556623550424699276, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
+      propertyPath: maxSpawnRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556623550424699276, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
+      propertyPath: waitTime
+      value: 74.03
+      objectReference: {fileID: 0}
     - target: {fileID: 5556623550424699277, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2438,7 +2459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
       propertyPath: m_TagString

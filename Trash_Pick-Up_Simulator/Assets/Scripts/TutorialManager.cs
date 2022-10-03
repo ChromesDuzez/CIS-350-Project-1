@@ -55,6 +55,7 @@ public class TutorialManager : MonoBehaviour
         //movement panel showing
         if (popUpIndex == 0)
         {
+            spawner.SetActive(false);
             //once they press all 4 keys go to next panel
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
