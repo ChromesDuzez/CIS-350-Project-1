@@ -16,12 +16,17 @@ public class DetectCollision : MonoBehaviour
     //public HealthSystem healthSystem;
     //public bool getHealthOnKill;
 
+    private GameObject particles;
+
     public Slider messTracker;
 
     private void Start()
     {
+        particles = gameObject.transform.GetChild(0).gameObject;
+        particles.SetActive(false);
         displayScoreScript = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreManager>();
         //healthSystem = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<HealthSystem>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,10 +34,18 @@ public class DetectCollision : MonoBehaviour
         //if (getHealthOnKill) { healthSystem.AddHealth(); }
         if (other.CompareTag("CanPickup"))
         {
+            StartCoroutine("ScoreParticles");
             displayScoreScript.incramentScore();
             Destroy(other.gameObject);
             messTracker.value--;
         }
 
+    }
+
+    IEnumerator ScoreParticles()
+    {
+        particles.SetActive(true);
+        yield return new WaitForSeconds(2);
+        particles.SetActive(false);
     }
 }

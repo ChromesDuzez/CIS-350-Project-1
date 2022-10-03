@@ -289,11 +289,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256531430}
   m_CullTransparentMesh: 0
---- !u!1 &273353503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5556623550424699279, guid: 0575cdcb388977848b3844eadc5cd20e, type: 3}
-  m_PrefabInstance: {fileID: 5556623550878997082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407602022
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3052ffcfeddc27f44a62647887b3f126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControllerScript: {fileID: 0}
+  playerControllerScript: {fileID: 1003771583}
   countThrow: {fileID: 1635490543}
   popUpIndex: 0
   popups:
@@ -919,7 +914,6 @@ MonoBehaviour:
   - {fileID: 1668469227}
   - {fileID: 2052359018}
   throwCount: 0
-  spawner: {fileID: 273353503}
   timer: 0
 --- !u!4 &780975655
 Transform:
@@ -996,6 +990,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44775521ca893c7438b5d9b9339fdfc6, type: 3}
+--- !u!114 &1003771583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555605356339653938, guid: 44775521ca893c7438b5d9b9339fdfc6, type: 3}
+  m_PrefabInstance: {fileID: 1003771582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768969bedd8094e4d8c710b4373650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018374069
 GameObject:
   m_ObjectHideFlags: 0

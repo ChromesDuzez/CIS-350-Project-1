@@ -16,7 +16,7 @@ public class TimerManager : MonoBehaviour
     public MessTracker messTrackerScript;
     private float timeValue;
     public Text timeText;
-
+    public bool tutorialDone = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,17 +44,21 @@ public class TimerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeValue > 0)
+        if (tutorialDone)
         {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            timeValue = 0;
-            messTrackerScript.gameOver = true;
-        }
+            if (timeValue > 0)
+            {
+                timeValue -= Time.deltaTime;
+            }
+            else
+            {
+                timeValue = 0;
+                messTrackerScript.gameOver = true;
+            }
 
-        DisplayTime(timeValue);
+            DisplayTime(timeValue);
+        }
+       
     }
 
     void DisplayTime(float timeToDisplay)
