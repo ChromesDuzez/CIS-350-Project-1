@@ -127,7 +127,7 @@ public class TutorialManager : MonoBehaviour
             //counts down on the 10 second timer
             if (timer > 0)
             {
-               
+                timer = timer - Time.deltaTime;
             }
             //once the timer is 0, go to next panel
             else 
@@ -139,16 +139,26 @@ public class TutorialManager : MonoBehaviour
         //congratulations panel
         else if (popUpIndex == 5)
         {
-            
-            
-            if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.KeypadEnter))
+            //counts down on the 10 second timer
+            if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            //once the timer is 0, go to next panel
+            else
             {
                 continueClicked = true;
-                //starts the timer
-                timer = timer - Time.deltaTime;
-
-               // messSlider.messTracker.value = 0f;
             }
+
+
+            //if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            //{
+            //    continueClicked = true;
+            //    starts the timer
+            //      timer = timer - Time.deltaTime;
+            //
+            //     messSlider.messTracker.value = 0f;
+            //}
         }
 
     }
