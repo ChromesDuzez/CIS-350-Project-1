@@ -16,85 +16,112 @@ public class TutorialManager : MonoBehaviour
     #region///////////// Public Variables: ///////////////
 
     public PlayerController playerControllerScript;
-    public GameObject firstPanel;
-    public GameObject secondPanel;
-    public GameObject thirdPanel;
-    public GameObject finalPanel;
+   
 
-    public int count = 0;
-    public bool[] arr = new bool[5];
+    public int popUpIndex = 0;
+    public GameObject[] popups;
     public int throwCount=0;
+
+    public GameObject spawner;
+    public float timer;
+  
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        firstPanel = GameObject.Find("Panel_1"); firstPanel.SetActive(true);
-        secondPanel = GameObject.Find("Panel_2"); secondPanel.SetActive(false);
-        thirdPanel = GameObject.Find("Panel_3"); thirdPanel.SetActive(false);
-        finalPanel = GameObject.Find("Panel_4"); finalPanel.SetActive(false);
 
-        for(int i=0; i <= arr.Length; i++)
-        {
-            arr[i] = false;
-        }
+
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(firstPanel.activeSelf == false)
+        //goes through a loop to set the current panel active and all others inactive
+        //from https://www.youtube.com/watch?v=a1RFxtuTVsk&ab_channel=Blackthornprod
+        for (int i=0; i < popups.Length; i++)
         {
-            if (Input.GetKeyDown(KeyCode.W) && arr[0]==false)
+            if (i == popUpIndex)
             {
-                count++;
-                arr[0] = true;
+                popups[popUpIndex].SetActive(true);
             }
-            if (Input.GetKeyDown(KeyCode.A) && arr[1] == false)
+            else
             {
-                count++;
-                arr[1] = true;
-            }
-            if (Input.GetKeyDown(KeyCode.S) && arr[2] == false)
-            {
-                count++;
-                arr[2] = true;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && arr[3] == false)
-            {
-                count++;
-                arr[3] = true;
+                popups[popUpIndex].SetActive(false);
             }
         }
-        if (count == 4)
+        //movement panel showing
+        if (popUpIndex == 0)
         {
-            //sets panel to active
-            secondPanel.SetActive(true);
-            //waits for player to press continue button (which makes the panel not active)
-            if (secondPanel.activeSelf == false)
+            //once they press all 4 keys go to next panel
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
-                //checks if player has pressed E and picked up something
-                if(Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
-                {
-                    count++;
-                }
+                popUpIndex++;
+
             }
         }
-        //sets the final panel active if both others are done
-        if (count == 5)
+        //pick up panel showing
+        else if (popUpIndex == 1)
         {
-            thirdPanel.SetActive(true);
-            if (thirdPanel.activeSelf == false)
+            //activates trash spawner
+            spawner.SetActive(true);
+            // checks if player has pressed E and picked up something, if so goes to next panel
+            if (Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
             {
-                if(Input.GetKeyDown(KeyCode.Mouse0)&& playerControllerScript.holdPoint.childCount == 0)
-                {
-                    throwCount++;
-                }
-                if (throwCount == 0)
-                {
-                    finalPanel.SetActive(true);
-                    count++;
-                }
+                popUpIndex++;
             }
         }
+        //throwing panel showing
+        else if (popUpIndex == 2)
+        {
+            //checks if they press LMB and is holding a piece of trash
+            if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount == 0)
+            {
+                throwCount++;
+            }
+            //if they have thrown 3 things then go to next panel and set the timer to 15 seconds
+            if (throwCount == 3)
+            {
+                popUpIndex++;
+                timer = 15;
+            }
+        }
+        //environment instability panel
+        else if (popUpIndex == 3)
+        {
+            //counts down on the 15 second timer
+            if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            //once the timer is 0, reset the timer and go to next panel
+            else
+            {
+                timer = 15;
+                popUpIndex++;
+            }
+        }
+        //environment monster panel
+        else if (popUpIndex == 4)
+        {
+            //counts down on the 15 second timer
+            if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            //once the timer is 0, go to next panel
+            else
+            {
+                popUpIndex++;
+            }
+        }
+        //congratulations panel
+        else if (popUpIndex == 5)
+        {
+            //shows cursor to press continue button
+            Cursor.visible = true;
+        }
+      
+       
     }
 }

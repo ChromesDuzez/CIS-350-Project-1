@@ -16,6 +16,7 @@ TagManager:
   - MuteToggle
   - MutedSprite
   - TrashCan
+  - Spawner
   layers:
   - Default
   - TransparentFX

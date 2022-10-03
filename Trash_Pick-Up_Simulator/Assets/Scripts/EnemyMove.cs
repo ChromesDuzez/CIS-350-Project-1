@@ -15,10 +15,17 @@ public class EnemyMove : MonoBehaviour
 {
     public Transform playerTransform;
     private NavMeshAgent enemyAgent;
+    private MessTracker messTracker;
 
     private void Awake()
     {
         enemyAgent = GetComponent<NavMeshAgent>();
+        messTracker = GameObject.FindGameObjectWithTag("MessTracker").GetComponent<MessTracker>();
+
+        if (!playerTransform)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     // Update is called once per frame
@@ -31,7 +38,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Game Over");
+            messTracker.GameOver();
         }
     }
 }
