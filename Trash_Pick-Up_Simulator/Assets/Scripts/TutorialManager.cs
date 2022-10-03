@@ -29,14 +29,14 @@ public class TutorialManager : MonoBehaviour
     public TimerManager inGameTimer;
   
     private bool continueClicked = false;
-
+    private bool done = false;
     #endregion
 
 
     // Update is called once per frame
     void Update()
     {
-        if (!continueClicked)
+        if (!continueClicked && !done)
         {
             for (int i = 0; i < popups.Length; i++)
             {
@@ -53,13 +53,16 @@ public class TutorialManager : MonoBehaviour
                      " Trash into a Trash Can, the longer you hold down LMB, the farther you throw! The distance" +
                      " is based on the power bar in the bottom left corner. Try throwing 3 things:" + throwCount + "/3 thrown.";
         }
-        else
+        else if(continueClicked)
         {
             for (int i = 0; i < popups.Length; i++)
             {
                 popups[i].SetActive(false);
             }
+            done = true;
         }
+   
+       
         //goes through a loop to set the current panel active and all others inactive
         //from https://www.youtube.com/watch?v=a1RFxtuTVsk&ab_channel=Blackthornprod
        
@@ -79,11 +82,14 @@ public class TutorialManager : MonoBehaviour
         {
 
             // checks if player has picked up something, if so goes to next panel
-
-            if (playerControllerScript.holdPoint.childCount != 0)
+            if(playerControllerScript.holdPoint.childCount != null)
             {
-                popUpIndex++;
+                if (playerControllerScript.holdPoint.childCount != 0)
+                {
+                    popUpIndex++;
+                }
             }
+            
         }
         //throwing panel showing
         else if (popUpIndex == 2)
@@ -140,6 +146,7 @@ public class TutorialManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 continueClicked = true;
+                //starts the timer
                 inGameTimer.tutorialDone = true;
                 Debug.Log("Setting tutorialDone to true...");
                 
