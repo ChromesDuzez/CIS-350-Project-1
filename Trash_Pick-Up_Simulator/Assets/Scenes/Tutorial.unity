@@ -909,6 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControllerScript: {fileID: 0}
+  countThrow: {fileID: 1635490543}
   popUpIndex: 0
   popups:
   - {fileID: 1724208463574514369}
@@ -1307,6 +1308,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615566266}
   m_CullTransparentMesh: 0
+--- !u!114 &1635490543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1724208463795707068, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
+  m_PrefabInstance: {fileID: 1724208463574514367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1649992901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1649992902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1402,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1668469228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2301,24 +2313,24 @@ PrefabInstance:
     - target: {fileID: 1724208463795707068, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_Text
       value: After you pick up trash, Press and Hold Left Mouse to Throw Trash into
-        a Trash Can, the longer you hold down the button, the farther you throw!
-        The distance is based on the power bar in the bottom left corner.
+        a Trash Can, the longer you hold down LMB, the farther you throw! The distance
+        is based on the power bar in the bottom left corner. Try throwing 3 things.
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.4193
+      value: 0.000034094
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8.97
+      value: -12.51
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 178.04584
+      value: 180.88449
       objectReference: {fileID: 0}
     - target: {fileID: 1724208463795707069, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 94.92465
+      value: 109.53842
       objectReference: {fileID: 0}
     - target: {fileID: 1724208464007809454, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_Color.a
@@ -2346,7 +2358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724208464007809456, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1724208464007809456, guid: 4ce97f89a8c748348967d5b8bd671464, type: 3}
       propertyPath: m_Name
