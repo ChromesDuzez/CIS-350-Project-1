@@ -24,7 +24,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] popups;
     public int throwCount=0;
 
-    public GameObject spawner;
+   
     public float timer=10;
   
     #endregion
@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour
     {
        
 
-        spawner = GameObject.FindGameObjectWithTag("Spawner");
+       
     }
 
     // Update is called once per frame
@@ -55,43 +55,22 @@ public class TutorialManager : MonoBehaviour
         //movement panel showing
         if (popUpIndex == 0)
         {
-            spawner.SetActive(false);
+            
             //once they press all 4 keys go to next panel
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
-                //counts down on the 10 second timer
-                if (timer > 0)
-                {
-                    timer -= Time.deltaTime;
-                }
-                //once the timer is 0, reset the timer and go to next panel
-                else
-                {
-                    timer = 10;
-                    popUpIndex++;
-                }
+                popUpIndex++;
 
             }
         }
         //pick up panel showing
         else if (popUpIndex == 1)
         {
-            //activates trash spawner
-            spawner.SetActive(true);
+          
             // checks if player has picked up something, if so goes to next panel
             if (playerControllerScript.holdPoint.childCount == 0)
             {
-                //counts down on the 10 second timer
-                if (timer > 0)
-                {
-                    timer = timer - Time.deltaTime;
-                }
-                //once the timer is 0, reset the timer and go to next panel
-                else
-                {
-                    timer = 10;
-                    popUpIndex++;
-                }
+                popUpIndex++;
 
             }
         }
@@ -124,8 +103,9 @@ public class TutorialManager : MonoBehaviour
             //once the timer is 0, reset the timer and go to next panel
             else
             {
-                timer = 10;
                 popUpIndex++;
+                timer = 10;
+                
             }
         }
         //environment monster panel
