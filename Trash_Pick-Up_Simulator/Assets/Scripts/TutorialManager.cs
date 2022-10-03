@@ -24,6 +24,7 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject spawner;
     public float timer;
+  
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,9 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < popups.Length; i++)
+        //goes through a loop to set the current panel active and all others inactive
+        //from https://www.youtube.com/watch?v=a1RFxtuTVsk&ab_channel=Blackthornprod
+        for (int i=0; i < popups.Length; i++)
         {
             if (i == popUpIndex)
             {
@@ -50,6 +53,7 @@ public class TutorialManager : MonoBehaviour
         //movement panel showing
         if (popUpIndex == 0)
         {
+            //once they press all 4 keys go to next panel
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
                 popUpIndex++;
@@ -58,9 +62,10 @@ public class TutorialManager : MonoBehaviour
         }
         //pick up panel showing
         else if (popUpIndex == 1)
-        {//checks if player has pressed E and picked up something
+        {
             //activates trash spawner
             spawner.SetActive(true);
+            // checks if player has pressed E and picked up something, if so goes to next panel
             if (Input.GetKeyDown(KeyCode.E) && playerControllerScript.holdPoint.childCount == 0)
             {
                 popUpIndex++;
@@ -69,10 +74,12 @@ public class TutorialManager : MonoBehaviour
         //throwing panel showing
         else if (popUpIndex == 2)
         {
+            //checks if they press LMB and is holding a piece of trash
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount == 0)
             {
                 throwCount++;
             }
+            //if they have thrown 3 things then go to next panel and set the timer to 15 seconds
             if (throwCount == 3)
             {
                 popUpIndex++;
@@ -82,10 +89,12 @@ public class TutorialManager : MonoBehaviour
         //environment instability panel
         else if (popUpIndex == 3)
         {
+            //counts down on the 15 second timer
             if (timer > 0)
             {
                 timer = timer - Time.deltaTime;
             }
+            //once the timer is 0, reset the timer and go to next panel
             else
             {
                 timer = 15;
@@ -95,10 +104,12 @@ public class TutorialManager : MonoBehaviour
         //environment monster panel
         else if (popUpIndex == 4)
         {
+            //counts down on the 15 second timer
             if (timer > 0)
             {
                 timer = timer - Time.deltaTime;
             }
+            //once the timer is 0, go to next panel
             else
             {
                 popUpIndex++;
@@ -107,6 +118,7 @@ public class TutorialManager : MonoBehaviour
         //congratulations panel
         else if (popUpIndex == 5)
         {
+            //shows cursor to press continue button
             Cursor.visible = true;
         }
       
