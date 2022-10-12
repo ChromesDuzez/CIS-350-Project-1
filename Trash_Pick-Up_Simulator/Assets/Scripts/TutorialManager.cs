@@ -18,14 +18,10 @@ public class TutorialManager : MonoBehaviour
 
     public PlayerController playerControllerScript;
 
-    public Text countThrow;
-
     public int popUpIndex = 0;
     public GameObject[] popups;
-    public int throwCount=0;
-
    
-    public float timer=7;
+    public float timer=4;
     private bool continueClicked = false;
     private bool done = false;
 
@@ -49,9 +45,7 @@ public class TutorialManager : MonoBehaviour
                     popups[i].SetActive(false);
                 }
             }
-            countThrow.text = "After you pick up trash, Press and Hold Left Mouse to Throw" +
-                     " Trash into a Trash Can, the longer you hold down LMB, the farther you throw! The distance" +
-                     " is based on the power bar in the bottom left corner. Try throwing 3 things:" + throwCount + "/3 thrown.";
+            
         }
         else if(continueClicked)
         {
@@ -61,24 +55,59 @@ public class TutorialManager : MonoBehaviour
             }
             done = true;
         }
-   
-       
+
+
         //goes through a loop to set the current panel active and all others inactive
         //from https://www.youtube.com/watch?v=a1RFxtuTVsk&ab_channel=Blackthornprod
-       
-        //movement panel showing
+
+        //look around panel showing
         if (popUpIndex == 0)
         {
+
+            //counts down on the second timer
+            if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            //once the timer is 0, reset the timer and go to next panel
+            else
+            {
+                popUpIndex++;
+                timer = 4;
+            }
+
+        }
+       
+        //movement panel showing
+        else if (popUpIndex == 1)
+        {
             
-            //once they press all 4 keys go to next panel
+            //once they press a key go to next panel
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
                 popUpIndex++;
 
             }
         }
+        //jump panel showing
+        else if (popUpIndex == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                popUpIndex++;
+            }
+        }
+        //Sprint panel showing
+        else if (popUpIndex == 3)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                popUpIndex++;
+            }
+        }
+        
         //pick up panel showing
-        else if (popUpIndex == 1)
+        else if (popUpIndex == 4)
         {
 
             // checks if player has picked up something, if so goes to next panel
@@ -90,23 +119,18 @@ public class TutorialManager : MonoBehaviour
 
         }
         //throwing panel showing
-        else if (popUpIndex == 2)
+        else if (popUpIndex == 5)
         {
             //checks if they press LMB and is holding a piece of trash
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount != 0)
             {
-                
-                throwCount++;
-            }
-            //if they have thrown 3 things then go to next panel and set the timer
-            if (throwCount == 3)
-            {
                 popUpIndex++;
-                timer = 7;
+               
+                timer = 4;
             }
         }
         //environment instability panel
-        else if (popUpIndex == 3)
+        else if (popUpIndex == 6)
         {
             
             //counts down on the 10 second timer
@@ -118,11 +142,11 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 popUpIndex++;
-                timer = 7;
+                timer = 5;
             }
         }
         //environment monster panel
-        else if (popUpIndex == 4)
+        else if (popUpIndex == 7)
         {
             //counts down on the 10 second timer
             if (timer > 0)
@@ -137,7 +161,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
         //congratulations panel
-        else if (popUpIndex == 5)
+        else if (popUpIndex == 8)
         {
             //counts down on the 10 second timer
             if (timer > 0)
