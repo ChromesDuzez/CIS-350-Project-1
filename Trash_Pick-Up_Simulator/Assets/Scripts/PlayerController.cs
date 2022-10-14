@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     [Header("Raycast Detection:")]
     [Tooltip("Distance to raycast from camera")]
     [SerializeField][Range(1f, 3f)] public float hitRange = 2f;
+    [Tooltip("The spread range of the raycast")]
+    [SerializeField] [Range(0.01f, 0.1f)] public float raycastSpread = 0.05f;
 
     // Throw Ability
     [Header("Throw Ability:")]
@@ -204,6 +206,11 @@ public class PlayerController : MonoBehaviour
     {
         // Draw a line in the inspector to show pickup range
         Debug.DrawRay(playerCamera.position, playerCamera.forward * hitRange, Color.yellow);
+        Debug.DrawRay(playerCamera.position, new Vector3(playerCamera.forward.x, playerCamera.forward.y + raycastSpread, playerCamera.forward.z) * hitRange, Color.yellow);
+        Debug.DrawRay(playerCamera.position, new Vector3(playerCamera.forward.x, playerCamera.forward.y + -raycastSpread, playerCamera.forward.z) * hitRange, Color.yellow);
+        Debug.DrawRay(playerCamera.position, new Vector3(playerCamera.forward.x + raycastSpread, playerCamera.forward.y, playerCamera.forward.z) * hitRange, Color.yellow);
+        Debug.DrawRay(playerCamera.position, new Vector3(playerCamera.forward.x + -raycastSpread, playerCamera.forward.y, playerCamera.forward.z) * hitRange, Color.yellow);
+
 
         // Continue if the player is not holding anything
         if (holdPoint.childCount != 0)
@@ -214,28 +221,55 @@ public class PlayerController : MonoBehaviour
         // If input, check if the player is looking at an object that can be picked up
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, hitRange, playerMask))
+            if (RaycastCheckPickup(playerCamera.forward))
             {
-                if (hitInfo.transform.tag == "CanPickup")
-                {
-                    //If true, freeze objects physics & move it to the player's "hand" (Hold Point)
-                    hitInfo.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    hitInfo.transform.SetParent(holdPoint);
-                    hitInfo.transform.localPosition = Vector3.zero;
-                    hitInfo.transform.localRotation = Quaternion.identity;
-                    
-                    try
-                    {
-                        groundCollsionSFXMngrScript = hitInfo.collider.gameObject.GetComponent<GroundCollisionSFXMngr>();
-                        groundCollsionSFXMngrScript.isOnGround = false;
-                    }
-                    catch
-                    {
-                        Debug.Log("Couldn't find hitInfo's Ground Collision SFX Manager.");
-                    }
-                }
+                return;
+            }
+            if (RaycastCheckPickup(new Vector3(playerCamera.forward.x, playerCamera.forward.y + raycastSpread, playerCamera.forward.z)))
+            {
+                return;
+            }
+            if (RaycastCheckPickup(new Vector3(playerCamera.forward.x, playerCamera.forward.y + -raycastSpread, playerCamera.forward.z)))
+            {
+                return;
+            }
+            if (RaycastCheckPickup(new Vector3(playerCamera.forward.x + raycastSpread, playerCamera.forward.y, playerCamera.forward.z)))
+            {
+                return;
+            }
+            if (RaycastCheckPickup(new Vector3(playerCamera.forward.x + -raycastSpread, playerCamera.forward.y, playerCamera.forward.z)))
+            {
+                return;
             }
         }
+    }
+
+    bool RaycastCheckPickup(Vector3 rayDirection)
+    {
+        if (Physics.Raycast(playerCamera.position, rayDirection, out RaycastHit hitInfo, hitRange, playerMask))
+        {
+            if (hitInfo.transform.tag == "CanPickup")
+            {
+                //If true, freeze objects physics & move it to the player's "hand" (Hold Point)
+                hitInfo.transform.GetComponent<Rigidbody>().isKinematic = true;
+                hitInfo.transform.SetParent(holdPoint);
+                hitInfo.transform.localPosition = Vector3.zero;
+                hitInfo.transform.localRotation = Quaternion.identity;
+
+                try
+                {
+                    groundCollsionSFXMngrScript = hitInfo.collider.gameObject.GetComponent<GroundCollisionSFXMngr>();
+                    groundCollsionSFXMngrScript.isOnGround = false;
+                }
+                catch
+                {
+                    Debug.Log("Couldn't find hitInfo's Ground Collision SFX Manager.");
+                }
+
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
