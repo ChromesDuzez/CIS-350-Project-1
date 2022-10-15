@@ -9,11 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class globals
-{
-    public static float volume = 1.0f; //will need to implement a way to change this setting and any other subsequent audio settings but for now we just have mute/unmute
-    public static bool bUnMuted = true;
-}
+
 
 public class AudioSettingsManager : MonoBehaviour
 {
@@ -21,7 +17,7 @@ public class AudioSettingsManager : MonoBehaviour
     public Text mText;
     public Image mutedIconSprite;
     bool mutedIconSpriteSet;
-    public bool unMutedBoolDebug = globals.bUnMuted;
+    public bool unMutedBoolDebug = GlobalSettings.bUnMuted;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +48,7 @@ public class AudioSettingsManager : MonoBehaviour
         }
 
         //start the muteToggle isOn variable at what the global variable is set to
-        muteToggle.isOn = globals.bUnMuted;
+        muteToggle.isOn = GlobalSettings.bUnMuted;
 
         //update the properties of the toggle appropriately
         ToggleValueChanged(muteToggle);
@@ -60,8 +56,8 @@ public class AudioSettingsManager : MonoBehaviour
 
     void ToggleValueChanged(Toggle change)
     {
-        globals.bUnMuted = muteToggle.isOn;
-        unMutedBoolDebug = globals.bUnMuted;
+        GlobalSettings.bUnMuted = muteToggle.isOn;
+        unMutedBoolDebug = GlobalSettings.bUnMuted;
         if (muteToggle.isOn)
         {
             mText.text = "Sound On";

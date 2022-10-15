@@ -70,8 +70,8 @@ public class GroundCollisionSFXMngr : MonoBehaviour
                 try
                 {
                     int hitGroundSFXIndex = Random.Range(0, SFXScript.collisionGround.Length);
-                    goAS.PlayOneShot(SFXScript.collisionGround[hitGroundSFXIndex], globals.volume);
-                    Debug.Log("Played: " + SFXScript.collisionGround[hitGroundSFXIndex] + " at volume " + globals.volume);
+                    goAS.PlayOneShot(SFXScript.collisionGround[hitGroundSFXIndex], GlobalSettings.volume);
+                    Debug.Log("Played: " + SFXScript.collisionGround[hitGroundSFXIndex] + " at volume " + GlobalSettings.volume);
                 }
                 catch
                 {

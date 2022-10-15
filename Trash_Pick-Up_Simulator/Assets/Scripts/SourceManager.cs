@@ -29,6 +29,6 @@ public class SourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        goAS.mute = !globals.bUnMuted;
+        goAS.mute = !GlobalSettings.bUnMuted;
     }
 }
