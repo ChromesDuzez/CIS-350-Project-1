@@ -1,15 +1,14 @@
 ﻿/*
 * Zach Wilson
 * CIS 350 - Group Project
-* This script controls the settings for Audio during the game
+* This script controls the mute button for Audio during the game 
+* Note: Name of script kind of inaccurate now but I dont wanna try and mess with it for now... A better name for it would be MuteToggleManager
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
 
 public class AudioSettingsManager : MonoBehaviour
 {
