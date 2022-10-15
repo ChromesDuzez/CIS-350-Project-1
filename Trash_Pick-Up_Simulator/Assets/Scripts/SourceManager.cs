@@ -12,6 +12,8 @@ using UnityEngine;
 public class SourceManager : MonoBehaviour
 {
     private AudioSource goAS;
+    private float defaultVolume;
+    public bool affectedByGlobalVol;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,21 @@ public class SourceManager : MonoBehaviour
         {
             Debug.LogError("Couldn't get the audio source!!!");
         }
+
+        defaultVolume = goAS.volume;
     }
 
     // Update is called once per frame
     void Update()
     {
         goAS.mute = !GlobalSettings.bUnMuted;
+        if(affectedByGlobalVol)
+        {
+            goAS.volume = defaultVolume * GlobalSettings.volume;
+        }
+        else 
+        {
+            goAS.volume = defaultVolume;
+        }
     }
 }
