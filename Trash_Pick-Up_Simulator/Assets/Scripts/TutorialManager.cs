@@ -9,6 +9,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 
 public class TutorialManager : MonoBehaviour
@@ -32,6 +34,12 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            StartCoroutine(waiter(4));
+            SceneManager.LoadScene("MainLevel");
+            
+        }
         if (!continueClicked && !done)
         {
             for (int i = 0; i < popups.Length; i++)
@@ -47,6 +55,7 @@ public class TutorialManager : MonoBehaviour
             }
             
         }
+
         else if(continueClicked)
         {
             for (int i = 0; i < popups.Length; i++)
@@ -54,6 +63,7 @@ public class TutorialManager : MonoBehaviour
                 popups[i].SetActive(false);
             }
             done = true;
+            
         }
 
 
@@ -73,7 +83,7 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 popUpIndex++;
-                timer = 4;
+                timer = 5;
             }
 
         }
@@ -81,19 +91,23 @@ public class TutorialManager : MonoBehaviour
         //movement panel showing
         else if (popUpIndex == 1)
         {
-            
-            //once they press a key go to next panel
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+            if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            else
             {
                 popUpIndex++;
-
+                timer = 5;
             }
+            
         }
         //jump panel showing
         else if (popUpIndex == 2)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                StartCoroutine(waiter(2));
                 popUpIndex++;
             }
         }
@@ -102,7 +116,9 @@ public class TutorialManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                StartCoroutine(waiter(2));
                 popUpIndex++;
+
             }
         }
         
@@ -124,9 +140,10 @@ public class TutorialManager : MonoBehaviour
             //checks if they press LMB and is holding a piece of trash
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerControllerScript.holdPoint.childCount != 0)
             {
+                StartCoroutine(waiter(2));
                 popUpIndex++;
-               
-                timer = 4;
+
+                timer = 7;
             }
         }
         //environment instability panel
@@ -156,7 +173,7 @@ public class TutorialManager : MonoBehaviour
             //once the timer is 0, go to next panel
             else 
             {
-                timer = 7;
+                timer = 10;
                 popUpIndex++;
             }
         }
@@ -171,7 +188,9 @@ public class TutorialManager : MonoBehaviour
             //once the timer is 0, go to next panel
             else
             {
+                StartCoroutine(waiter(5));
                 continueClicked = true;
+                SceneManager.LoadScene("MainLevel");
             }
 
 
@@ -185,5 +204,9 @@ public class TutorialManager : MonoBehaviour
             //}
         }
 
+    }
+    IEnumerator waiter(int wait)
+    {
+        yield return new WaitForSeconds(wait);
     }
 }
