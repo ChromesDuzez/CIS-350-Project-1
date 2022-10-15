@@ -139,14 +139,14 @@ public class PlayerController : MonoBehaviour
         // Get Mouse Input, smooth, and adjust it to match chosen sensitivity
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
-        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
+        cameraPitch -= currentMouseDelta.y * mouseSensitivity * GlobalSettings.mouseSense;
         
         // Restrict camera from moving past straight up & down
         cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
 
         // Update camera and player rotation based on input
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
+        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity * GlobalSettings.mouseSense);
     }
 
     /// <summary>
