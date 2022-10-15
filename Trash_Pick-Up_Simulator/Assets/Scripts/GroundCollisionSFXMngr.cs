@@ -2,6 +2,7 @@
 * Zach Wilson
 * CIS 350 - Group Project
 * This script controls the ground collision Audio Effects that can be assigned to any throwable object
+* Note: The name of this script is what I would deem to now be inaccurate.. a better name for in the future would be ThrowableSFXMngr
 */
 
 using System.Collections;
@@ -72,6 +73,27 @@ public class GroundCollisionSFXMngr : MonoBehaviour
                     int hitGroundSFXIndex = Random.Range(0, SFXScript.collisionGround.Length);
                     goAS.PlayOneShot(SFXScript.collisionGround[hitGroundSFXIndex], GlobalSettings.volume);
                     Debug.Log("Played: " + SFXScript.collisionGround[hitGroundSFXIndex] + " at volume " + GlobalSettings.volume);
+                }
+                catch
+                {
+                    Debug.Log("Error trying to play sound.");
+                }
+            }
+        }
+    }
+
+    public void playTrashCollision()
+    {
+        if (canGetTrackerScript)
+        {
+            if (!messTrackerScript.gameOver && (SFXScript.collisionTrashBin.Length > 0))
+            {
+                //Play sound effect
+                try
+                {
+                    int hitTrashSFXIndex = Random.Range(0, SFXScript.collisionTrashBin.Length);
+                    goAS.PlayOneShot(SFXScript.collisionGround[hitTrashSFXIndex], GlobalSettings.volume);
+                    Debug.Log("Played: " + SFXScript.collisionGround[hitTrashSFXIndex] + " at volume " + GlobalSettings.volume);
                 }
                 catch
                 {

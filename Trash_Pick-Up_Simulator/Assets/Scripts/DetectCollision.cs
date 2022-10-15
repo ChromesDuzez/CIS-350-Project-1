@@ -34,6 +34,14 @@ public class DetectCollision : MonoBehaviour
         //if (getHealthOnKill) { healthSystem.AddHealth(); }
         if (other.CompareTag("CanPickup"))
         {
+            try
+            {
+                other.GetComponent<GroundCollisionSFXMngr>().playTrashCollision();
+            }
+            catch
+            {
+                Debug.Log("Error trying to get the objects SFX Manager.");
+            }
             StartCoroutine("ScoreParticles");
             displayScoreScript.incramentScore();
             Destroy(other.gameObject);
