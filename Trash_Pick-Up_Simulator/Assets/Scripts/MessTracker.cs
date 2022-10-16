@@ -14,6 +14,7 @@ public class MessTracker : MonoBehaviour
 {
     public Slider messTracker;
     public TimerManager CountDownTimerScript;
+    public PlayerController pc;
     public int maxTrash = 50;
     public Text gameOverText;
     public bool gameOver = false;
@@ -22,6 +23,8 @@ public class MessTracker : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         //gets the game over textbox if it does not initially get set
         if (gameOverText == null)
@@ -63,7 +66,14 @@ public class MessTracker : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-        gameOverText.text = "Your world has been consumed...\nPress R to try again.";
+        if(pc.health <= 0)
+        {
+            gameOverText.text = "The garbage monsters have consumed you...\nPress R to try again.";
+        }
+        else
+        {
+            gameOverText.text = "Your world has been consumed...\nPress R to try again.";
+        }
         gameOver = true;
         hasLost = true;
     }

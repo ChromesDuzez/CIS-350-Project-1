@@ -9,6 +9,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +54,11 @@ public class PlayerController : MonoBehaviour
     [Header("Throw Ability:")]
     [Tooltip("Force at which an object is thrown")]
     [SerializeField][Range(500f, 1500f)] public float maxThrowForce = 1000f;
+
+    // Health
+    [Header("Player Health")]
+    [SerializeField] public float health = 10f;
+    public bool isBeingHurt = false;
     #endregion
 
     #region///////////// Private Variables: ///////////////
@@ -86,6 +92,8 @@ public class PlayerController : MonoBehaviour
     //objectHitByRayCast's Ground Collision SFX Mngr Script
     private GroundCollisionSFXMngr groundCollsionSFXMngrScript;
 
+    public PauseMenu pauseMenu;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -95,6 +103,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         holdPoint = GameObject.Find("Holding Point").transform;
         firePoint = GameObject.Find("Fire Point").transform;
+        pauseMenu = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<PauseMenu>();
 
         // Lock cursor and hide it during gameplay
         if(lockCursor)
@@ -122,13 +131,23 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Call Movement updates
-        UpdateMouseLook();
-        UpdateMovement();
+        if(!pauseMenu.pauseOpen)
+        {
+            // Call Movement updates
+            UpdateMouseLook();
+            UpdateMovement();
 
-        // Call Ability Updates
-        HandlePickup();
-        HandleThrowing();
+            // Call Ability Updates
+            HandlePickup();
+            HandleThrowing();
+        }
+        else
+        {
+            if(Input.GetKeyDown(KeyCode.M))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     /// <summary>
@@ -308,6 +327,22 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(playerCamera.forward * maxThrowForce * powerbarSlider.value, ForceMode.Force);
             powerbarSlider.value = 1;
             sliderFillImage.color = Color.white;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag.Contains("Enemy"))
+        {
+            isBeingHurt = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Contains("Enemy"))
+        {
+            isBeingHurt = false; ;
         }
     }
 }

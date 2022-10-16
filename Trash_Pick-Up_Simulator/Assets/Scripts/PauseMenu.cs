@@ -16,6 +16,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject controlsMenu;
     public bool pauseOpen = false;
     public bool controlsOpen = false;
+    public Slider healthSlider;
+    public PlayerController pc;
+    public EnemyMove enemyMove;
+    public Text ouchText;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,8 @@ public class PauseMenu : MonoBehaviour
         //controlsMenu = GameObject.FindGameObjectWithTag("ControlsMenu");
         pauseMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        ouchText = GameObject.FindGameObjectWithTag("ouch").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -37,6 +43,7 @@ public class PauseMenu : MonoBehaviour
             pauseOpen = true;
             pauseMenu.SetActive(true);
             Cursor.visible = true;
+            Time.timeScale = 0;
         }
         //if is open and player presses escape, hides pause menu and resumes game
         else if (pauseOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)))
@@ -45,13 +52,24 @@ public class PauseMenu : MonoBehaviour
             pauseOpen = false;
             pauseMenu.SetActive(false);
             Cursor.visible = false;
+            Time.timeScale = 1;
         }
         //controls escape button on controls menu
         else if (controlsOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)))
         {
             controlsMenu.SetActive(false);
         }
-        
+
+        healthSlider.value = pc.health;
+
+        if(pc.isBeingHurt)
+        {
+            ouchText.text = "You are being attacked by a monster! Run!";
+        }
+        else
+        {
+            ouchText.text = "";
+        }
     }
     //manages Controls_Btn in PauseMenu
     public void openControlsMenu()

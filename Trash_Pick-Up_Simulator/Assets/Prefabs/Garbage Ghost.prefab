@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8743293567697861267}
   m_Layer: 0
   m_Name: Garbage Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
+  canBeHurt: 1
 --- !u!95 &8743293567697861267
 Animator:
   serializedVersion: 3

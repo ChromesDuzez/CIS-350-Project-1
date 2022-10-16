@@ -17,6 +17,9 @@ TagManager:
   - MutedSprite
   - TrashCan
   - Spawner
+  - UICanvas
+  - ouch
+  - Enemy
   layers:
   - Default
   - TransparentFX
