@@ -30,7 +30,6 @@ public class TutorialManager : MonoBehaviour
     // public MessTracker messSlider;
     #endregion
 
-
     // Update is called once per frame
     void Update()
     {
@@ -118,7 +117,7 @@ public class TutorialManager : MonoBehaviour
             {
                 StartCoroutine(waiter(3));
                 popUpIndex++;
-
+                timer = 4;
             }
         }
 
@@ -132,6 +131,15 @@ public class TutorialManager : MonoBehaviour
                 popUpIndex++;
             }
 
+            else if (timer > 0)
+            {
+                timer = timer - Time.deltaTime;
+            }
+            else
+            {
+                popUpIndex++;
+                timer = 5;
+            }
 
         }
         //throwing panel showing
