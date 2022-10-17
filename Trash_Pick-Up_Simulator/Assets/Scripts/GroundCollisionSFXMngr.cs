@@ -82,7 +82,7 @@ public class GroundCollisionSFXMngr : MonoBehaviour
         }
     }
 
-    public void playTrashCollision()
+    public AudioClip playTrashCollision()
     {
         if (canGetTrackerScript)
         {
@@ -92,8 +92,8 @@ public class GroundCollisionSFXMngr : MonoBehaviour
                 try
                 {
                     int hitTrashSFXIndex = Random.Range(0, SFXScript.collisionTrashBin.Length);
-                    goAS.PlayOneShot(SFXScript.collisionGround[hitTrashSFXIndex], GlobalSettings.volume);
-                    Debug.Log("Played: " + SFXScript.collisionGround[hitTrashSFXIndex] + " at volume " + GlobalSettings.volume);
+                    Debug.Log("Played: " + SFXScript.collisionTrashBin[hitTrashSFXIndex] + " at volume " + GlobalSettings.volume);
+                    return SFXScript.collisionTrashBin[hitTrashSFXIndex];
                 }
                 catch
                 {
@@ -101,5 +101,6 @@ public class GroundCollisionSFXMngr : MonoBehaviour
                 }
             }
         }
+        return null;
     }
 }

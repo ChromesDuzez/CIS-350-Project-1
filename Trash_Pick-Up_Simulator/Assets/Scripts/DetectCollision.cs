@@ -36,7 +36,7 @@ public class DetectCollision : MonoBehaviour
         {
             try
             {
-                other.GetComponent<GroundCollisionSFXMngr>().playTrashCollision();
+               gameObject.GetComponent<AudioSource>().PlayOneShot(other.GetComponent<GroundCollisionSFXMngr>().playTrashCollision(), GlobalSettings.volume);
             }
             catch
             {
