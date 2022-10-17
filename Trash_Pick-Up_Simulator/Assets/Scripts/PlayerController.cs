@@ -144,7 +144,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             if(Input.GetKeyDown(KeyCode.M))
-            {
+            { 
+                Debug.Log("PauseMenu to MainMenu Scene");
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene(0);
             }
         }

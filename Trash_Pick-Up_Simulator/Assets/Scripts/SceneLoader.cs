@@ -8,6 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            Time.timeScale = 1.0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
     public void LoadScene(string sceneName)
     {
         Debug.Log("SceneLoader");
